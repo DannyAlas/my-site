@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Title}}</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/code.css">
+    <script src="/js/code.js"></script>
+</head>
+<body>
+    {{ template "nav" . }}
+    <header>
+        <h1>{{.Title}}</h1>
+        <p>Posted by {{.Author}} on {{.Date}}</p>
+    </header>
+    <div id="post">
+        <div id="toc">
+            <div id="toc-title">
+                <button id="toc-toggle"></button>
+                {{ .Title }}
+            </div>
+            <div id="toc-content"></div>
+        </div>
+        <article id="contents">
+            {{.Content}}
+        </article>
+    </div>
+    {{ template "footer" .}}
+</body>
+    <script src="/js/index.js"></script>
+    <script >
+        var tocPadding = 40
+        // show/hide TOC content on button click
+        document.getElementById('toc-toggle').addEventListener('click', function () {
+            var tocContent = document.getElementById('toc-content');
+            var tocContent = document.getElementById('toc-content');
+            tocContent.classList.toggle('open'); // Toggle the 'open' class on TOC content
+            this.classList.toggle('opened'); // Toggle a class on the button itself
+            if (tocContent.classList.contains('open')) {
+                tocContent.style.maxHeight = `calc(100vh - ${tocPadding}px)`; // Set the max height of the TOC content
+            } else {
+                tocContent.style.maxHeight = '0'; // Hide the TOC content
+            }
+        });
+        function adjustTOC() {
+            var contents = document.getElementById('contents');
+            var toc = document.getElementById('toc');
+            
+            // Calculate the left position and width for the TOC
+            var contentRect = contents.getBoundingClientRect();
+            var tocPadding = 40
+            var leftEdge = contentRect.right + tocPadding
+            var availableWidth = window.innerWidth - leftEdge - tocPadding
+
+            toc.style.left = `${leftEdge}px`; // Position TOC right of the content
+            toc.style.width = `${availableWidth}px`; // Dynamic width of TOC
+            toc.style.top = `${contents.offsetTop}px`;
+        }
+        function handleScroll() {
+            // Apply sticky positioning if scrolled past the content's top position
+            var toc = document.getElementById('toc');
+            var contents = document.getElementById('contents');
+            // if the contents top is past the viewport top then apply sticky positioning
+            if (contents.getBoundingClientRect().top < 0) {
+                toc.style.position = 'fixed';
+                toc.style.top = `${tocPadding}px`;
+            } else {
+                toc.style.position = 'absolute';
+                toc.style.top = `${contents.offsetTop}px`;
+            }
+        }
+        function makeToc() {
+            var toc = "";
+            var level = 0;
+            document.getElementById("contents").innerHTML =
+                document.getElementById("contents").innerHTML.replace(
+                    /<h([\d])>([^<]+)<\/h([\d])>/gi,
+                    function (str, openLevel, titleText, closeLevel) {
+                        if (openLevel != closeLevel) {
+                            return str;
+                        }
+                        if (openLevel > level) {
+                            toc += (new Array(openLevel - level + 1)).join("<ul>");
+                        } else if (openLevel < level) {
+                            toc += (new Array(level - openLevel + 1)).join("</ul>");
+                        }
+                        level = parseInt(openLevel);
+                        var anchor = titleText.replace(/ /g, "_");
+                        toc += "<li><a href=\"#" + anchor + "\">" + titleText
+                            + "</a></li>";
+                        return "<h" + openLevel + "><a name=\"" + anchor + "\">"
+                            + titleText + "</a></h" + closeLevel + ">";
+                    }
+                );
+            if (level) {
+                toc += (new Array(level + 1)).join("</ul>");
+            }
+            document.getElementById("toc-content").innerHTML += toc;
+        }
+        
+        window.onload = function () {
+            makeToc();
+            adjustTOC();
+        };
+        window.addEventListener('scroll', handleScroll); // Handle scroll to emulate sticky positioning
+        window.addEventListener('resize', adjustTOC); // Adjust TOC on window resize
+    </script> 
+</html>

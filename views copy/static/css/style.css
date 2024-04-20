@@ -1,0 +1,105 @@
+:root {
+    color-scheme: light dark;
+    --color-bg: #f8f8f8;
+    --color-text: #333; /* Primary text color for dark mode */
+    --color-alt: #ac95f8; /* Alternate color for links and highlights */
+    --color-footer-bg: #404040; /* Footer background color */
+    --font-body: 'Fira Code', monospace; /* Primary font family */
+    --font-headers: 'Fira Code', sans-serif; /* Font family for headers */
+    font: 1.5em/1.618 var(--font-body);
+    background-color: var(--color-bg);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+}
+
+header, nav, footer {
+    text-align: center;
+    padding: 1em 0;
+}
+
+nav a {
+    color: var(--color-text);
+    text-decoration: none;
+    padding: 0 1em;
+}
+
+nav a:hover, nav a:focus {
+    color: var(--color-alt);
+    background-color: rgba(0, 0, 0, 0.1); /* Adds a subtle background on hover/focus */
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--font-headers);
+    margin: 0.5em 0;
+}
+
+h1 {
+    font-size: 2.5em;
+}
+
+h2 {
+    font-size: 2em;
+}
+
+h3 {
+    font-size: 1.75em;
+}
+
+p {
+    margin: 1em 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto; /* Center images */
+}
+
+blockquote {
+    font-style: italic;
+    margin: 1em 20px;
+    padding: 0.5em 20px;
+    border-left: 3px solid var(--color-alt);
+    background-color: #eee;
+}
+
+footer {
+    background-color: var(--color-footer-bg);
+    color: #fff;
+    padding: 1em 0;
+    font-size: 0.75em;
+    bottom: 0;
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+article {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1em;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-bg: #121212;
+        --color-text: #eee;
+    }
+
+    body {
+        background-color: var(--color-bg);
+        color: var(--color-text);
+    }
+
+    blockquote {
+        background-color: #333;
+    }
+}
