@@ -1,13 +1,28 @@
-FROM golang:latest
+  GNU nano 5.4                                                                     Dockerfile *                                                                            
+FROM golang:latest AS builder
 
-WORKDIR /app
+RUN apt-get update && apt-get install -y git
+
+WORKDIR /app/build
 
 RUN git clone https://github.com/DannyAlas/my-site .
 
-RUN go build -o webserver ./cmd/server/webserver
+WORKDIR /app/build/cmd/build
 
-RUN go build -o build ./cmd/build/build.go
+RUN go mod download
+
+RUN go build -o /app/build/build ./build.go
+
+WORKDIR /app/build/cmd/serve
+
+RUN go mod download
+
+RUN go build -o /app/build/webserver ./webserver.go
+
+FROM golang:latest
+
+COPY --from=builder /app/build /app/build
 
 EXPOSE 8080
 
-CMD ["./webserver"]
+CMD ["/app/build/webserver"]
