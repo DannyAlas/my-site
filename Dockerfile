@@ -12,7 +12,7 @@ RUN go mod download
 
 RUN go build -o /app/build/build ./build.go
 
-WORKDIR /app/build/cmd/server
+WORKDIR /app/build/cmd/serve
 
 RUN go mod download
 
