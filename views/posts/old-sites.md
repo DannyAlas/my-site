@@ -14,7 +14,7 @@ I moved to this simple site cause sometimes less is more :)
 
 ## [Old 1](https://old1.danielalas.com)
 - [Github Repo](https://github.com/DannyAlas/my-site)
-- Built using NextJS, threeJS, and based off of the tutorials from [devaslife](https://www.youtube.com/@devaslife/featured)
+- Built using NextJS, threeJS, hosted on Vercel, and based off of the tutorials from [devaslife](https://www.youtube.com/@devaslife/featured)
 - I added [Contentlayer](https://contentlayer.dev/) for CMS and some custom UI stuff
 
 <iframe src="https://danielalas.com">
