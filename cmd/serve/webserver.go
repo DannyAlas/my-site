@@ -79,5 +79,5 @@ func main() {
 	})
 
 	// Start server
-	e.Logger.Fatal(e.Start(":42069"))
+	e.Logger.Fatal(e.Start(":8080"))
 }
