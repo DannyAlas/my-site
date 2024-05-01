@@ -66,8 +66,8 @@ func main() {
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 
-	GenerateRoutes(e, "output")
-	e.Static("/", "output/static")
+	GenerateRoutes(e, "dist")
+	e.Static("/", "dist/static")
 
 	// Custom routes page
 	e.GET("/routes", func(c echo.Context) error {

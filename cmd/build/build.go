@@ -294,5 +294,5 @@ func Build(rootDir string, outputDir string) {
 }
 
 func main() {
-	Build("../../views", "../../output")
+	Build("../../views", "../../dist")
 }
