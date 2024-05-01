@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Old-sites</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/code.css">
+    <script src="/js/code.js"></script>
+    <script src="https://kit.fontawesome.com/9c3c92ad15.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    
+<nav
+style="
+background-color: var(--color-nav);
+display: flex;
+"
+>
+    <div id="nav-container" style="
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
+    margin: 0;
+    ">
+        <a href="/">
+            <div class="logo">
+                <img src="/imgs/june.png" alt="Jazzy Cloud Logo" id="june">
+            </div>
+        </a>
+        <div id="menu">
+            <ul class="nav-links" style="
+            display: flex;
+            list-style-type: none;
+            margin-right: 10px;
+            ">
+                <li><a href="/posts">Posts</a>/</li>
+                <li><a href="/about">Me?</a>/</li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    <header>
+        <h1>Old-sites</h1>
+        <p>Posted by Danny on 2024-01-01</p>
+    </header>
+    <div id="post">
+        <div id="toc">
+            <div id="toc-title">
+                <button id="toc-toggle"></button>
+                Old-sites
+            </div>
+            <div id="toc-content"></div>
+        </div>
+        <article id="contents">
+            <h1>My old sites</h1>
+<p>They're still live if you wanna explore them.</p>
+<p>I moved to this simple site cause sometimes less is more :)</p>
+<h2><a href="https://old1.danielalas.com">Old 1</a></h2>
+<ul>
+<li><a href="https://github.com/DannyAlas/my-site">Github Repo</a></li>
+<li>Built using NextJS, threeJS, and based off of the tutorials from <a href="https://www.youtube.com/@devaslife/featured">devaslife</a></li>
+<li>I added <a href="https://contentlayer.dev/">Contentlayer</a> for CMS and some custom UI stuff</li>
+</ul>
+<iframe src="https://danielalas.com">
+</iframe>
+<h2><a href="https://osld2.danielalas.com">Old2</a></h2>
+<ul>
+<li>A Webflow based site as an attempt to learn the platform. (not for me)</li>
+</ul>
+<iframe src="https://old.danielalas.com">
+</iframe>
+
+        </article>
+    </div>
+    
+<footer>
+    <div>
+        <p>&copy; 2024 Daniel Alas (Jazzy Cloud)</p>
+    </div>
+</footer>
+
+</body>
+    <script src="/js/index.js"></script>
+    <script >
+        var tocPadding = 40
+        
+        document.getElementById('toc-toggle').addEventListener('click', function () {
+            var tocContent = document.getElementById('toc-content');
+            var tocContent = document.getElementById('toc-content');
+            tocContent.classList.toggle('open'); 
+            this.classList.toggle('opened'); 
+            if (tocContent.classList.contains('open')) {
+                tocContent.style.maxHeight = `calc(100vh - ${tocPadding}px)`; 
+            } else {
+                tocContent.style.maxHeight = '0'; 
+            }
+        });
+        function adjustTOC() {
+            var contents = document.getElementById('contents');
+            var toc = document.getElementById('toc');
+            
+            
+            var contentRect = contents.getBoundingClientRect();
+            var tocPadding = 40
+            var leftEdge = contentRect.right + tocPadding
+            var availableWidth = window.innerWidth - leftEdge - tocPadding
+
+            toc.style.left = `${leftEdge}px`; 
+            toc.style.width = `${availableWidth}px`; 
+            toc.style.top = `${contents.offsetTop}px`;
+        }
+        function handleScroll() {
+            
+            var toc = document.getElementById('toc');
+            var contents = document.getElementById('contents');
+            
+            if (contents.getBoundingClientRect().top < 0 + tocPadding) {
+                toc.style.position = 'fixed';
+                toc.style.top = `${tocPadding}px`;
+            } else {
+                toc.style.position = 'absolute';
+                toc.style.top = `${contents.offsetTop}px`;
+            }
+        }
+        function makeToc() {
+            var toc = "";
+            var level = 0;
+            document.getElementById("contents").innerHTML =
+                document.getElementById("contents").innerHTML.replace(
+                    /<h([\d])>([^<]+)<\/h([\d])>/gi,
+                    function (str, openLevel, titleText, closeLevel) {
+                        if (openLevel != closeLevel) {
+                            return str;
+                        }
+                        if (openLevel > level) {
+                            toc += (new Array(openLevel - level + 1)).join("<ul>");
+                        } else if (openLevel < level) {
+                            toc += (new Array(level - openLevel + 1)).join("</ul>");
+                        }
+                        level = parseInt(openLevel);
+                        var anchor = titleText.replace(/ /g, "_");
+                        toc += "<li><a href=\"#" + anchor + "\">" + titleText
+                            + "</a></li>";
+                        return "<h" + openLevel + "><a name=\"" + anchor + "\">"
+                            + titleText + "</a></h" + closeLevel + ">";
+                    }
+                );
+            if (level) {
+                toc += (new Array(level + 1)).join("</ul>");
+            }
+            document.getElementById("toc-content").innerHTML += toc;
+        }
+        
+        window.onload = function () {
+            makeToc();
+            adjustTOC();
+        };
+        adjustTOC();
+        window.addEventListener('scroll', handleScroll); 
+        window.addEventListener('resize', adjustTOC); 
+    </script> 
+</html>

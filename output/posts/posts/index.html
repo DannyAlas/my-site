@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Posts</title>
+        <link rel="stylesheet" href="/css/style.css"> 
+    </head>
+    <body>
+        
+<nav
+style="
+background-color: var(--color-nav);
+display: flex;
+"
+>
+    <div id="nav-container" style="
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
+    margin: 0;
+    ">
+        <a href="/">
+            <div class="logo">
+                <img src="/imgs/june.png" alt="Jazzy Cloud Logo" id="june">
+            </div>
+        </a>
+        <div id="menu">
+            <ul class="nav-links" style="
+            display: flex;
+            list-style-type: none;
+            margin-right: 10px;
+            ">
+                <li><a href="/posts">Posts</a>/</li>
+                <li><a href="/about">Me?</a>/</li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+        <article id="contents">
+             <div id="intro">
+                <h1>Posts</h1>
+            </div>           
+            <ul>
+                
+                    <li id="post-card-container">
+                        <a href="/posts/homelab">
+                            <div id="post-card">
+                                <div id="post-card-header">
+                                    <h2 id="post-card-title">Homelab</h2>
+                                    <p id="post-card-date">2024-04-01</p>
+                                </div>
+                                <p id="post-card-description"> A brief overview of all that resides in the self-hosted 2018 mid-tier consumer-grade-hardware cloud</p>
+                            </div>
+                        </a>
+                    </li>
+                
+                    <li id="post-card-container">
+                        <a href="/posts/old-sites">
+                            <div id="post-card">
+                                <div id="post-card-header">
+                                    <h2 id="post-card-title">Old-sites</h2>
+                                    <p id="post-card-date">2024-01-01</p>
+                                </div>
+                                <p id="post-card-description"> My old sites</p>
+                            </div>
+                        </a>
+                    </li>
+                
+            </ul>
+        </article>
+        
+<footer>
+    <div>
+        <p>&copy; 2024 Daniel Alas (Jazzy Cloud)</p>
+    </div>
+</footer>
+
+    </body>
+</html>

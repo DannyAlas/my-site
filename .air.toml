@@ -4,8 +4,8 @@ tmp_dir = "tmp"
 
 [build]
   args_bin = []
-  bin = "./tmp/main.exe"
-  cmd = "cd cmd\\build && go run build.go && cd ..\\serve && go build -o ..\\..\\tmp\\main.exe webserver.go"
+  bin = "./tmp/main"
+  cmd = "cd ./cmd/build && go run build.go && cd ../serve && go build -o ../../tmp/main webserver.go"
   delay = 0
   exclude_dir = ["node_modules", "tmp", "vendor", "testdata"]
   exclude_file = []

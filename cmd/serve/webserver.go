@@ -20,12 +20,20 @@ func GenerateRoutes(e *echo.Echo, dir string) {
 		}
 		if !info.IsDir() && strings.HasSuffix(path, ".html") {
 			relPath, err := filepath.Rel(dir, path)
+			// remmove the /pages/ prefix
 			if err != nil {
 				return err
 			}
+			// if we're in the root of the pages directory, remove the prefix
+			if strings.HasPrefix(relPath, "pages/") {
+				relPath = strings.TrimPrefix(relPath, "pages/")
+			}
+
 			// if it's an index file, set the route to the directory
 			if strings.Contains(relPath, "index.html") {
 				relPath = strings.TrimSuffix(relPath, "index.html")
+				relPath = strings.TrimSuffix(relPath, "posts/")
+
 			} else {
 				relPath = strings.TrimSuffix(relPath, ".html")
 			}

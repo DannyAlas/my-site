@@ -17,11 +17,12 @@ import (
 )
 
 type PostMetadata struct {
-	Title  string   `yaml:"title"`
-	Date   string   `yaml:"date"`
-	Author string   `yaml:"author"`
-	Tags   []string `yaml:"tags"`
-	Slug   string   `yaml:"slug"`
+	Title       string   `yaml:"title"`
+	Date        string   `yaml:"date"`
+	Author      string   `yaml:"author"`
+	Tags        []string `yaml:"tags"`
+	Slug        string   `yaml:"slug"`
+	Description string   `yaml:"description"`
 }
 
 type Post struct {
@@ -194,10 +195,7 @@ func Build(rootDir string, outputDir string) {
 			return err
 		}
 		if !info.IsDir() && strings.HasSuffix(path, ".html") {
-			relPath, err := filepath.Rel(filepath.Join(rootDir, "pages"), path)
-			if err != nil {
-				return err
-			}
+			relPath := filepath.Join("pages", strings.TrimPrefix(path, filepath.Join(rootDir, "pages")))
 			// evaluate the template
 			outputPath := filepath.Join(outputDir, relPath)
 			// create the directory structure in the output directory
@@ -207,9 +205,15 @@ func Build(rootDir string, outputDir string) {
 			if err != nil {
 				return err
 			}
-			tmpl := templates.Lookup("..\\..\\views\\pages\\" + relPath)
+
+			tmpl := templates.Lookup(relPath)
 			if tmpl == nil {
+				// print all the templates
+				for _, t := range templates.Templates() {
+					log.Println(t.Name())
+				}
 				log.Fatalf("Template not found for page %s", relPath)
+
 			}
 			if tmpl != nil {
 				err = tmpl.Execute(output, data)
@@ -244,9 +248,10 @@ func Build(rootDir string, outputDir string) {
 				return err
 			}
 			// execute the template
-			tmpl := templates.Lookup("..\\..\\views\\templates\\post.html")
+			tmpl := templates.Lookup("templates/post.html")
 			if tmpl == nil {
-				log.Fatal("Template not found for post", post.Title)
+				log.Fatalf("Template not found for ", "templates/post.html")
+
 			}
 			if tmpl != nil {
 				err = tmpl.Execute(output, post)
@@ -256,7 +261,7 @@ func Build(rootDir string, outputDir string) {
 			}
 		} else if !info.IsDir() && strings.HasSuffix(path, ".html") {
 			// resolve and copy the file
-			relPath, err := filepath.Rel(filepath.Join(rootDir, "posts"), path)
+			relPath, err := filepath.Rel(rootDir, path)
 			if err != nil {
 				return err
 			}
@@ -269,9 +274,9 @@ func Build(rootDir string, outputDir string) {
 			if err != nil {
 				return err
 			}
-			tmpl := templates.Lookup("..\\..\\views\\posts\\" + relPath)
+			tmpl := templates.Lookup(relPath)
 			if tmpl == nil {
-				log.Fatal("Template not found for post file", relPath)
+				log.Fatal("Template not found for post file: ", relPath)
 			}
 			if tmpl != nil {
 				err = tmpl.Execute(output, data)

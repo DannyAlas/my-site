@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/code.css">
     <script src="/js/code.js"></script>
+    <script src="https://kit.fontawesome.com/9c3c92ad15.js" crossorigin="anonymous"></script>
 </head>
 <body>
     {{ template "nav" . }}
@@ -62,7 +63,7 @@
             var toc = document.getElementById('toc');
             var contents = document.getElementById('contents');
             // if the contents top is past the viewport top then apply sticky positioning
-            if (contents.getBoundingClientRect().top < 0) {
+            if (contents.getBoundingClientRect().top < 0 + tocPadding) {
                 toc.style.position = 'fixed';
                 toc.style.top = `${tocPadding}px`;
             } else {
@@ -103,6 +104,7 @@
             makeToc();
             adjustTOC();
         };
+        adjustTOC();
         window.addEventListener('scroll', handleScroll); // Handle scroll to emulate sticky positioning
         window.addEventListener('resize', adjustTOC); // Adjust TOC on window resize
     </script> 

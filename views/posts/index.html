@@ -9,14 +9,27 @@
     </head>
     <body>
         {{ template "nav" .}}
-        <h1>Posts</h1>
-        <ul>
-            {{ range .posts }}
-                <li>
-                    <a href="/posts/{{ .Slug }}">{{ .Title }}</a>
-                </li>
-            {{ end }}
-        </ul>
+
+        <article id="contents">
+             <div id="intro">
+                <h1>Posts</h1>
+            </div>           
+            <ul>
+                {{ range .posts }}
+                    <li id="post-card-container">
+                        <a href="/posts/{{ .Slug }}">
+                            <div id="post-card">
+                                <div id="post-card-header">
+                                    <h2 id="post-card-title">{{ .Title }}</h2>
+                                    <p id="post-card-date">{{ .Date }}</p>
+                                </div>
+                                <p id="post-card-description"> {{ .Description }}</p>
+                            </div>
+                        </a>
+                    </li>
+                {{ end }}
+            </ul>
+        </article>
         {{ template "footer" .}}
     </body>
 </html>
