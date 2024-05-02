@@ -14,14 +14,15 @@ I moved to this simple site cause sometimes less is more :)
 
 ## [Old 1](https://old1.danielalas.com)
 - [Github Repo](https://github.com/DannyAlas/my-site)
-- Built using NextJS, threeJS, hosted on Vercel, and based off of the tutorials from [devaslife](https://www.youtube.com/@devaslife/featured)
-- I added [Contentlayer](https://contentlayer.dev/) for CMS and some custom UI stuff
+- Built using NextJS, ThreeJS, and hosted on Vercel
+- Based off of the tutorials from [devaslife](https://www.youtube.com/@devaslife/featured)
+- I added [Contentlayer](https://contentlayer.dev/) for CMS, some custom components and, models 
 
-<iframe src="https://danielalas.com">
+<iframe src="https://old1.danielalas.com">
 </iframe>
 
-## [Old2](https://osld2.danielalas.com)
-- A Webflow based site as an attempt to learn the platform. (not for me)  
+## [Old2](https://old.danielalas.com)
+- A Webflow based site as an attempt to learn the platform. (I learned it's not for me)  
 <iframe src="https://old.danielalas.com">
 </iframe>
 

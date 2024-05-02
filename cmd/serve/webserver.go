@@ -1,15 +1,13 @@
 package main
 
 import (
+	"flag"
+	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 	"log"
 	"os"
 	"path/filepath"
 	"strings"
-
-	"net/http"
-
-	"github.com/labstack/echo/v4"
-	"github.com/labstack/echo/v4/middleware"
 )
 
 func GenerateRoutes(e *echo.Echo, dir string) {
@@ -55,29 +53,21 @@ func GenerateRoutes(e *echo.Echo, dir string) {
 }
 
 func main() {
-	// print cwd
-	cwd, err := os.Getwd()
-	if err != nil {
-		log.Fatalf("error: %v", err)
-	}
-	log.Printf("cwd: %s", cwd)
+
+	// Parse flags
+	var distDir string
+	flag.StringVar(&distDir, "dist", "dist", "The directory to serve files from")
+	flag.Parse()
+
 	e := echo.New()
 
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 
-	GenerateRoutes(e, "dist")
-	e.Static("/", "dist/static")
-
-	// Custom routes page
-	e.GET("/routes", func(c echo.Context) error {
-		routes_str := ""
-		for _, route := range e.Routes() {
-			routes_str += route.Path + "\n"
-		}
-		return c.String(http.StatusOK, routes_str)
-	})
-
+	GenerateRoutes(e, distDir)
+	e.Static("/", distDir+"/static")
+	// server favicom in dist/static/imgs
+	e.File("/favicon.ico", distDir+"/static/imgs/favicon.ico")
 	// Start server
 	e.Logger.Fatal(e.Start(":8080"))
 }

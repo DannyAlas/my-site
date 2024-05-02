@@ -10,7 +10,9 @@ description: "A brief overview of all that resides in the self-hosted 2018 mid-t
 # My Homelab for 2024
 
 
-This is more of a living document than a blog post and I'll keep editing and adding to it as things change. I thought about doing some version control, but hey, that's what git is for so [here's](https://github.com/DannyAlas/jazzy-cloud) the link.
+This is more of a living document than a blog post and I'll keep editing and adding to it as things change. 
+
+I thought about doing some version control, but hey, that's what git is for so [here's](https://github.com/DannyAlas/jazzy-cloud) the link.
 
 # The Physical
 
@@ -43,13 +45,13 @@ This is more of a living document than a blog post and I'll keep editing and add
 
 I run the 4 Dell Optiplexes as [Proxmox](https://www.proxmox.com/en/proxmox-virtual-environment/overview) nodes only, I bought them used for a really good deal.
 
-The, original lab was mainly just Zeus but now he's the granddaddy of all my servers. He's been through more disasters than a Greek tragedy. Still, he acts an extra node in the Prox cluster, my NAS and and runs one of the K8s masters (mainly for graphics related processes). I used to run TrueNas Scale for the NAS but moved to just a Debian ZFS as I didn't need most of the things it provided. 
+The, original lab was mainly just Zeus but now he's the granddaddy of all my servers. He's been through more disasters than a Greek tragedy. Still, he acts an extra node in the Prox cluster, my NAS and and runs one of the K8s masters (mainly for graphics related processes). I used to run TrueNas Scale for the NAS but moved to just a instance Debian running ZFS, as I didn't need most of the things TrueNas provided. 
 
 
 ![Proxmox Web Ui](/imgs/homelab/prox-webui.png)
 
 
-Thus it's a **5 node cluster**, with local with lvm thins on a each host. I'm experimenting with Ceph and HA but don't have enough OSDs for now to be production ready. Availability is mainly L7 based, but there are a few VMs in the Prox HA.
+Thus it's a **5 node cluster**, with local lvm thins on a each host. I'm experimenting with Ceph and HA but don't have enough OSDs for now to be production ready. Availability is mainly L7 based, but there are a few VMs in the Prox HA.
 
 I run [Debian](https://www.debian.org/) wherever possible and also use it as my daily driver for my PC and laptop.
 
@@ -64,7 +66,7 @@ I use two separate bridges for networking, one with the gigabit cards for all VM
 
 I have a fiber gigabit uplink to my ISP going into my main **firewall** [Protectli Vault FW4B](https://protectli.com/product/fw4b/) running PfSense in HA. I run the secondary instance on Zeus and even though pfsync is enabled, the WAN switch currently only terminates to the Protectli. Thus, I don't route any traffic through Zeus at the moment but if needed I could manually move over the WAN link.
 
-By default everything is rejected both ways, I only open ports to the metallb IPs for my Istio Gateways and I control ingress/egress though them. I also run Snort and have done a lot of *finagling* to get it working nicely, though it's never perfect. There are also three VPNs running, a Wireguard for personal uses and an OpenVPN server setup because a [specific type of network traffic](https://support.torproject.org/abuse/what-about-ddos/#:~:text=But%20because%20Tor%20only%20transports%20correctly%20formed%20TCP%20streams%2C%20not%20all%20IP%20packets%2C%20you%20cannot%20send%20UDP%20packets%20over%20Tor) only allows TCP streams which [Wiregaurd doesn't support](https://www.wireguard.com/known-limitations/#:~:text=WireGuard%20explicitly%20does%20not%20support%20tunneling%20over%20TCP). And lastly a Wiregaurd for my Work **and only work** traffic. My goal in the future is to get another fully dedicated firewall box for proper HA.
+By default everything is rejected both ways, I only open ports to the metallb IPs for my Istio Gateways and I control ingress/egress though them for all hosted apps. I also run Snort and have done a lot of *finagling* to get it working nicely, though it's never perfect. There are also three VPNs running, a Wireguard for personal uses and an OpenVPN server setup because a [specific type of network traffic](https://support.torproject.org/abuse/what-about-ddos/#:~:text=But%20because%20Tor%20only%20transports%20correctly%20formed%20TCP%20streams%2C%20not%20all%20IP%20packets%2C%20you%20cannot%20send%20UDP%20packets%20over%20Tor) only allows TCP streams which [Wiregaurd doesn't support](https://www.wireguard.com/known-limitations/#:~:text=WireGuard%20explicitly%20does%20not%20support%20tunneling%20over%20TCP). And lastly a Wiregaurd for my Work **and only work** traffic. My goal in the future is to get another fully dedicated firewall box for proper HA.
 
 #### SW1 Core switch : MikroTik CRS309-1G-8S+IN
 
@@ -101,11 +103,11 @@ I use two PiHoles for DNS filtering / blacklisting, two [PowerDNS Recursors](htt
 
 Kea DHCP in my PfSense router pushes the two PiHoles to my clients, servers are using the re-cursors directly.
 
-The PowerDNS solution is pretty overkill for my needs but it was a good learning experiance and if one of my VMs is ever down, at least my DNS stays running :). I can mess around a lot with routing and gather a good bit of metrics with this set up! I've also been using [PowerDNS Admin](https://github.com/PowerDNS-Admin/PowerDNS-Admin) as a nice way to manage the records.
+The PowerDNS solution is pretty overkill for my needs but it was a good learning experiance and if one of my VMs is ever down, at least my DNS stays running :). It does let me mess around a lot with routing and gather a good bit of metrics! I've also been using [PowerDNS Admin](https://github.com/PowerDNS-Admin/PowerDNS-Admin) as a nice way to manage the records.
 
 ## Git + Ops
 
-Forgejo, Jenkins, and Harbor! All running in the K8S cluster. I'm slowly moving my projects to being hosted on Forgio and just mirrored to GitHub.
+Forgejo, Jenkins, and Harbor! All running in the K8S cluster. I'm slowly moving my projects to being hosted on Forgejo and just mirrored to GitHub.
 
 ## Kubernetes
 

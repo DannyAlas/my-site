@@ -1,13 +1,13 @@
 package main
 
 import (
+	"flag"
 	"html/template"
 	"io"
+	"log"
 	"os"
 	"path/filepath"
 	"strings"
-
-	"log"
 
 	"gopkg.in/yaml.v3"
 
@@ -294,5 +294,21 @@ func Build(rootDir string, outputDir string) {
 }
 
 func main() {
-	Build("../../views", "../../dist")
+
+	// Parse flags
+	var rootDir string
+	var outputDir string
+	flag.StringVar(&rootDir, "root", "../../views/", "The root directory containing the content")
+	flag.StringVar(&outputDir, "output", "../../dist", "The directory to output the built site")
+	flag.Parse()
+
+	log.Println("Building site from", rootDir, "to", outputDir)
+
+	// create the output directory if it doesn't exist
+	if _, err := os.Stat(outputDir); os.IsNotExist(err) {
+		os.Mkdir(outputDir, 0755)
+	}
+
+	// Build the site
+	Build(rootDir, outputDir)
 }
