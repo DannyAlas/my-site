@@ -44,7 +44,7 @@ header, nav, footer {
 }
 
 #nav-container {
-    width: 100%;
+    width: 95%;
     display: flex;
     justify-content: space-between;
     padding: 10px;
@@ -127,27 +127,6 @@ blockquote {
     overflow-y: auto; /* Optional, for scrolling if TOC is very long */
     background-color: var(--color-accent-bg);
     border-radius: 5px;
-}
-
-
-/* media query for smaller screens */
-@media (max-width: 1200px) {
-    #contents {
-        width: 800px; /* Full width on smaller screens */
-    }
-    #toc {
-        display: none; /* Hide TOC on smaller screens */
-    }
-}
-
-/* media query for larger screens */
-@media (min-width: 1200px) {
-    #contents {
-        width: 800px;
-    }
-    #toc {
-        display: block; /* Show TOC on larger screens */
-    }
 }
 
 
@@ -234,5 +213,55 @@ tr:nth-child(even) {
 }
 tr:nth-child(odd) {
     background-color: var(--color-table-2);
+}
+
+
+/* media query for smaller screens */
+@media (max-width: 1200px) {
+    #contents {
+        width: 800px; /* Full width on smaller screens */
+    }
+    #toc {
+        display: none; /* Hide TOC on smaller screens */
+    }
+}
+
+/* media query for larger screens */
+@media (min-width: 1200px) {
+    #contents {
+        width: 800px;
+    }
+    #toc {
+        display: block; /* Show TOC on larger screens */
+    }
+}
+
+/* if we're smaller than 800px, content should be full width */
+@media (max-width: 800px) {
+    h1 {
+        font-size: 5vw; /* Adjust based on your design */
+    }
+
+    h2 {
+        font-size: 4vw;
+    }
+
+    h3 {
+        font-size: 3vw;
+    }
+    
+    a, p {
+        font-size: 4vw;
+        margin: 1em 0;
+    }
+    #contents {
+        width: 100%;
+        margin: 0; 
+        padding: 0; 
+        box-sizing: border-box;
+    }
+    #toc {
+        display: none; /* Hide TOC on smaller screens */
+    }
 }
 
