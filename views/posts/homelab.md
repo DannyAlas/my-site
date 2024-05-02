@@ -12,7 +12,7 @@ description: "A brief overview of all that resides in the self-hosted 2018 mid-t
 
 This is more of a living document than a blog post and I'll keep editing and adding to it as things change. 
 
-I thought about doing some version control, but hey, that's what git is for so [here's](https://github.com/DannyAlas/jazzy-cloud) the link.
+I thought about doing some version control, but hey, that's what git is for so [here's](https://github.com/DannyAlas/my-site) the link.
 
 # The Physical
 
