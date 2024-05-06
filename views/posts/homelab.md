@@ -1,6 +1,6 @@
 ---
 title: "Homelab"
-date: 2024-04-01
+date: 2024-04-21
 author: "Danny"
 tags: ["Homelab"]
 slug: "homelab"
@@ -31,7 +31,7 @@ I thought about doing some version control, but hey, that's what git is for so [
 
 ### Zeus
 ![Zeus](/imgs/homelab/zeus.png)
-( I know, I know, I'm not good at naming things... )
+(Why a plant in the case? It wanted root access)
 |                Components                 |                       Spec                        |
 | :---------------------------------------: | :-----------------------------------------------: |
 |   <i class="fa-solid fa-microchip"></i>   |                   1x  i7-6700K                    |
