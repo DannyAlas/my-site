@@ -111,7 +111,9 @@ Forgejo, Jenkins, and Harbor! All running in the K8S cluster. I'm slowly moving 
 
 ## Kubernetes
 
-Set up through some custome Ansible playbooks which was crucial while learning cause sure messed up a lot. Everything is configured with FluxCD (Lens is great b.t.w.). Initially I used Rancher + Helm charts for deployments but as complexity grew, I quickly learned why GitOps is nice.
+Set up through some simple Ansible playbooks. I didn't do this the first two times I nuked the cluster but reinstalling all the packages, configuring the mounts, users, etc. really became a pain.  
+
+So it's a 3 master (ETCD on masters), 2 worker cluster. Everything in the cluster is configured with FluxCD. I used to use Rancher for easier introspection but wasn't a fan especially while learning. I now really mainly on the CLI and [Lens](https://k8slens.dev/) occasionally. Initially I used Rancher + Helm charts for deployments but as complexity grew, I quickly learned why GitOps is nice.
 
 This is still a W.I.P... I'll have a detailed write up about everything running in the future but as a simple overview for what hosted right now.
 
@@ -123,16 +125,17 @@ This is still a W.I.P... I'll have a detailed write up about everything running 
 - KeyDB
 - Kafka
 - Minio
+- NATS (in testing, hopefully to soon replace the above)
 - Prometheus
 - Grafana
 - Loki
 - Promtail
-- Keycloak
+- Keycloak (debating moving to [LLDAP](https://github.com/lldap/lldap) *rust btw*)
 - Hashicorp Vault
-- *Arrs stack + Qbt + Plex (I use my own operator for this, based on [this wonderful project](https://github.com/kubealex/k8s-mediaserver-operator), I might release mine as public soon as it configures with Postgress for everything, even Qbt)
+- *Arrs stack + Qbt + Plex (I use my own operator based on [this wonderful project](https://github.com/kubealex/k8s-mediaserver-operator), I might make it public soon as it can use Postgress or the chart configs for Qbt)
 - Forgejo
 - Harbor
 - Airflow
-- Flyte
-- Jenkins
+- [Flyte](https://flyte.org/) (highly recommend) 
+- Jenkins (W.I.P.)
 - Then all of my personal web services (this site, APIs, scrapers, etc. I'll also go into these more in the future)
