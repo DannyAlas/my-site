@@ -1,8 +1,8 @@
 :root {
     color-scheme: light dark;
-    --color-bg: #f8f8f8;
+    --color-bg: #171717;
     --color-accent-bg: #2d2d2d; /* Alternate background color */
-    --color-text: #333; /* Primary text color for dark mode */
+    --color-text: #eee;
     --color-accent: #ac95f8; /* Alternate color for links and highlights */
     --color-accent-ligher: #ac95f882; /* Lighter shade of accent color */
     --color-table-1: #ac95f83a; /* Table row background color 1 */
@@ -14,20 +14,13 @@
 
 }
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --color-bg: #171717;
-        --color-text: #eee;
-    }
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+}
 
-    body {
-        background-color: var(--color-bg);
-        color: var(--color-text);
-    }
-
-    blockquote {
-        background-color: #333;
-    }
+blockquote {
+    background-color: #333;
 }
 
 body {
