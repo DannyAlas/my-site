@@ -6,23 +6,27 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Posts</title>
         <link rel="stylesheet" href="/css/style.css"> <!-- Make sure to provide this CSS file -->
+        <link href='https://fonts.googleapis.com/css?family=Fira Code' rel='stylesheet'>
+        <script src="https://kit.fontawesome.com/9c3c92ad15.js" crossorigin="anonymous"></script>
     </head>
     <body>
         {{ template "nav" .}}
-        <div >
-            <article id="contents">
-                 <h1>Posts</h1>
-                <ul>
-                    {{ range .posts }}
-                        <li class="post-card">
-                            <a href="/posts/{{ .Slug }}">
-                            {{ .Title }}
-                            </a>
-                        </li>
-                    {{ end }}
-                </ul>
-            </article>
-        </div>
-        {{ template "footer" .}}
+        <main>
+            <div >
+                <article id="contents">
+                     <h1>Posts</h1>
+                    <ul>
+                        {{ range .posts }}
+                            <li class="post-card">
+                                <a href="/posts/{{ .Slug }}">
+                                {{ .Title }}
+                                </a>
+                            </li>
+                        {{ end }}
+                    </ul>
+                </article>
+            </div>
+        </main>
     </body>
+    {{ template "footer" .}}
 </html>
