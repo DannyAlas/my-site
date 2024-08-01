@@ -165,7 +165,7 @@ func Build(rootDir string, outputDir string) {
 			if err != nil {
 				return err
 			}
-			outputPath := filepath.Join(outputDir, "static", relPath)
+			outputPath := filepath.Join(outputDir, relPath)
 			// create the directory structure in the output directory
 			os.MkdirAll(filepath.Dir(outputPath), 0755)
 			// copy the file
@@ -188,16 +188,17 @@ func Build(rootDir string, outputDir string) {
 		log.Fatalf("error: %v", err)
 	}
 
-	// generate the static pages in the pages dir. The pages directory structure should be preserved in the output directory.
+	// generate the static pages in the root dir. The pages directory structure should be preserved in the output directory.
 	// Each page may include templates which should be executed with the appropriate data.
 	err = filepath.Walk(filepath.Join(rootDir, "pages"), func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			return err
 		}
 		if !info.IsDir() && strings.HasSuffix(path, ".html") {
-			relPath := filepath.Join("pages", strings.TrimPrefix(path, filepath.Join(rootDir, "pages")))
+			relPath := strings.TrimPrefix(path, rootDir)
 			// evaluate the template
-			outputPath := filepath.Join(outputDir, relPath)
+			outputPath := filepath.Join(outputDir, strings.TrimPrefix(relPath, "pages/"))
+			log.Println("Output Path: ", outputPath)
 			// create the directory structure in the output directory
 			os.MkdirAll(filepath.Dir(outputPath), 0755)
 			// create the file
@@ -210,10 +211,11 @@ func Build(rootDir string, outputDir string) {
 			if tmpl == nil {
 				// print all the templates
 				for _, t := range templates.Templates() {
-					log.Println(t.Name())
+					log.Println("Template: ", t.Name())
 				}
+				pwd, _ := os.Getwd()
+				log.Println("PWD: ", pwd)
 				log.Fatalf("Template not found for page %s", relPath)
-
 			}
 			if tmpl != nil {
 				err = tmpl.Execute(output, data)
