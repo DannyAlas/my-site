@@ -267,7 +267,7 @@ func Build(rootDir string, outputDir string) {
 			if err != nil {
 				return err
 			}
-			outputPath := filepath.Join(outputDir, "posts", relPath)
+			outputPath := filepath.Join(outputDir, relPath)
 			// create the directory structure in the output directory
 			os.MkdirAll(filepath.Dir(outputPath), 0755)
 
