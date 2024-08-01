@@ -173,6 +173,12 @@ func Build(rootDir string, outputDir string) {
 			if err != nil {
 				return err
 			}
+			// if file is favicon.ico, copy it to the root of the output directory
+			if strings.HasSuffix(path, "favicon.ico") {
+				outputPath = filepath.Join(outputDir, "favicon.ico")
+			} else {
+				outputPath = filepath.Join(outputDir, relPath)
+			}
 			output, err := os.Create(outputPath)
 			if err != nil {
 				return err
