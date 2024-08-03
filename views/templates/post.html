@@ -16,13 +16,13 @@
         <p>Posted by {{.Author}} on {{.Date}}</p>
     </header>
     <div id="post">
-        <div id="toc">
-            <div id="toc-title">
-                <button id="toc-toggle"></button>
-                {{ .Title }}
-            </div>
-            <div id="toc-content"></div>
-        </div>
+        <!-- <div id="toc"> -->
+        <!--     <div id="toc-title"> -->
+        <!--         <button id="toc-toggle"></button> -->
+        <!--         {{ .Title }} -->
+        <!--     </div> -->
+        <!--     <div id="toc-content"></div> -->
+        <!-- </div> -->
         <article id="contents">
             {{.Content}}
         </article>
@@ -99,13 +99,12 @@
             }
             document.getElementById("toc-content").innerHTML += toc;
         }
-        
-        window.onload = function () {
-            makeToc();
-            adjustTOC();
-        };
-        adjustTOC();
-        window.addEventListener('scroll', handleScroll); // Handle scroll to emulate sticky positioning
-        window.addEventListener('resize', adjustTOC); // Adjust TOC on window resize
+        // window.onload = function () {
+        //     makeToc();
+        //     adjustTOC();
+        // };
+        // adjustTOC();
+        // window.addEventListener('scroll', handleScroll); // Handle scroll to emulate sticky positioning
+        // window.addEventListener('resize', adjustTOC); // Adjust TOC on window resize
     </script> 
 </html>

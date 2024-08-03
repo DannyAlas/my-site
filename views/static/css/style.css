@@ -11,12 +11,8 @@
     --font-headers: 'Fira Code', sans-serif; /* Font family for headers */
     font: 1.5em/1.618 var(--font-body);
     background-color: var(--color-bg);
-
 }
 
-blockquote {
-    background-color: #333;
-}
 
 body {
     margin: 0;
@@ -35,12 +31,14 @@ header, nav, footer {
     width: 95%;
     display: flex;
     justify-content: space-between;
-    padding: 10px;
+    padding: 0.625rem;
     right: 0;
 }
+
 #menu {
     right: 0;
 }
+
 nav a {
     color: var(--color-text);
     text-decoration: none;
@@ -95,10 +93,9 @@ img {
 
 blockquote {
     font-style: italic;
-    margin: 1em 20px;
-    padding: 0.5em 20px;
-    border-left: 3px solid var(--color-accent);
-    background-color: #eee;
+    margin: 1em 1.25rem;
+    padding: 0.5em 1.25rem;
+    border-left: 0.1875rem solid var(--color-accent);
 }
 
 #post {
@@ -110,17 +107,14 @@ blockquote {
 
 #toc {
     position: absolute; /* Changed from sticky to absolute for controlled positioning */
-    top: 20px;
+    top: 1.25rem;
     height: fit-content;
     overflow-y: auto; /* Optional, for scrolling if TOC is very long */
     background-color: var(--color-accent-bg);
-    border-radius: 5px;
+    border-radius: 0.3125rem;
 }
 
-
-
 /* TOC styles */
-
 #toc-content {
     overflow: hidden;
     max-height: 0; /* Start collapsed */
@@ -128,15 +122,15 @@ blockquote {
 }
 
 #toc-content.open {
-    max-height: 500px; /* Sufficiently high to show all content or adjust as needed */
+    max-height: 31.25rem; /* Sufficiently high to show all content or adjust as needed */
 }
 
 #toc-toggle {
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 16px;
-    padding: 5px 10px;
+    font-size: 1rem;
+    padding: 0.3125rem 0.625rem;
     outline: none;
     display: inline-block;
 }
@@ -157,10 +151,10 @@ blockquote {
 
 #toc-title {
     margin: 0;
-    padding: 10px;
+    padding: 0.625rem;
     background-color: var(--color-accent-bg);
     color: var(--color-text);
-    border-radius: 5px 5px 0 0;
+    border-radius: 0.3125rem 0.3125rem 0 0;
     /* bottom border color */
     border-bottom: 1px solid var(--color-accent);
 }
@@ -188,7 +182,7 @@ table {
 
 th, td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 0.5em;
     text-align: left;
 }
 
@@ -199,15 +193,15 @@ th {
 tr:nth-child(even) {
     background-color: var(--color-table-1);
 }
+
 tr:nth-child(odd) {
     background-color: var(--color-table-2);
 }
 
-
 /* media query for smaller screens */
-@media (max-width: 1200px) {
+@media (max-width: 75rem) {
     #contents {
-        width: 800px; /* Full width on smaller screens */
+        width: 50rem; /* Full width on smaller screens */
     }
     #toc {
         display: none; /* Hide TOC on smaller screens */
@@ -215,17 +209,17 @@ tr:nth-child(odd) {
 }
 
 /* media query for larger screens */
-@media (min-width: 1200px) {
+@media (min-width: 75rem) {
     #contents {
-        width: 800px;
+        width: 50rem;
     }
     #toc {
         display: block; /* Show TOC on larger screens */
     }
 }
 
-/* if we're smaller than 800px, content should be full width */
-@media (max-width: 800px) {
+/* if we're smaller than 50rem, content should be full width */
+@media (max-width: 50rem) {
     h1 {
         font-size: 5vw; /* Adjust based on your design */
     }
@@ -257,4 +251,3 @@ tr:nth-child(odd) {
         display: none; /* Hide TOC on smaller screens */
     }
 }
-
