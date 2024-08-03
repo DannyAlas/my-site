@@ -245,7 +245,7 @@ tr:nth-child(odd) {
 @media (max-width: 50rem) {
     #contents {
         width: 100%;
-        padding: 1rem 1rem;
+        padding: 0.5rem 0.5rem;
     }
     h1 {
         font-size: 5vw; 
