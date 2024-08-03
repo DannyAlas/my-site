@@ -71,6 +71,28 @@ p {
     margin: 1em 0;
 }
 
+a {
+    color: var(--color-accent);
+    text-decoration: none;
+}
+
+a:hover, a:focus {
+    color: var(--color-accent-ligher);
+    transition: color 0.1s;
+}
+
+/* lists are indented */
+ul, ol {
+    padding-left: 1.5em;
+    padding-top: 0.5em;
+}
+
+lu, li {
+    margin: 0.5em 0;
+    padding-bottom: 0.5em;
+}
+
+
 img {
     max-width: 100%;
     height: auto;
@@ -202,6 +224,7 @@ tr:nth-child(odd) {
 @media (max-width: 75rem) {
     #contents {
         width: 50rem; /* Full width on smaller screens */
+        padding: 1rem 1rem; /* Add padding to the content */
     }
     #toc {
         display: none; /* Hide TOC on smaller screens */
@@ -220,8 +243,12 @@ tr:nth-child(odd) {
 
 /* if we're smaller than 50rem, content should be full width */
 @media (max-width: 50rem) {
+    #contents {
+        width: 100%;
+        padding: 1rem 1rem;
+    }
     h1 {
-        font-size: 5vw; /* Adjust based on your design */
+        font-size: 5vw; 
     }
 
     h2 {
@@ -231,22 +258,28 @@ tr:nth-child(odd) {
     h3 {
         font-size: 3vw;
     }
-    
+
     a, p {
-        font-size: 4vw;
+        font-size: 3vw;
         margin: 1em 0;
     }
-    
+
     th, td, tr {
-        font-size: 4vw;
+        font-size: 3vw;
     }
-        
-    #contents {
-        width: 100%;
-        margin: 0; 
-        padding: 0; 
-        box-sizing: border-box;
+
+    ul, ol {
+        font-size: 3vw;
     }
+
+    lu, li {
+        font-size: 3vw;
+    }
+
+    blockquote {
+        font-size: 3vw;
+    }
+
     #toc {
         display: none; /* Hide TOC on smaller screens */
     }
