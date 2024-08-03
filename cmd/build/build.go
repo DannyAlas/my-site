@@ -40,8 +40,6 @@ func parseMetadata(content string) (PostMetadata, string) {
 	}
 
 	err := yaml.Unmarshal([]byte(splitContent[1]), &metadata)
-	// convert title to url friendly format
-	metadata.Title = strings.ReplaceAll(metadata.Title, " ", "-")
 
 	if err != nil {
 		log.Fatalf("error: %v", err)

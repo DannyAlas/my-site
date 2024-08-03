@@ -28,13 +28,13 @@ The art objects are how you transmit the transcendence, the conceptual performan
 
 You will find this losely interrelated with the above, but there's a fundamental difference of outcome. 
 
-> The sloths never starts. 
+> The sloths never start. 
 > 
 > The greedy never finish. 
 
 What are you going to do, keep the art all to yourself? You greedy little... Stop hogging it! Share it with the boys. Distribute the bounty amongst the proletariat. Don't open a skittles packet in class unless you have enough for everybody. 
 
-Perfectionism as a Sloth Sin paralyzes you and prevents you from even beginning your projects based on a comparison to a standard that you completely made up for yourself.
+Perfectionism, the sloth sin, cripples you, preventing you from even beginning your projects based on a comparison to a standard you set for yourself.
 
 And if you don't reach that, then it's not even worth it because you're not going to be cool and a genius and people won't understand your truth. The flip side is you overcome your sloth, you get a first draft down, and then you start tinkering and tweaking and thinking and... then you never actually get around to release it, yet managing to maintain the fantasy that if you ever did release it, if you ever did actually get around to finishing it, then you'd be famous and rich immediately. 
 
